@@ -1,4 +1,4 @@
-package mentortools;
+package mentortools.student;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,4 +22,11 @@ public class Student {
     private String email;
     private String gituser;
     private String memo;
+
+    public Student(String name, String email, String gituser, String memo) {
+        this.name = name;
+        this.email = email;
+        this.gituser = gituser;
+        this.memo = memo;
+    }
 }
