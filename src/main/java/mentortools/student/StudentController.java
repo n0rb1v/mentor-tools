@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("/api/students")
 public class StudentController {
-    StudentService studentService;
+    private final StudentService studentService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

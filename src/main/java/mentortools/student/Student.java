@@ -3,11 +3,11 @@ package mentortools.student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mentortools.trainingclass.Registration;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,6 +22,9 @@ public class Student {
     private String email;
     private String gituser;
     private String memo;
+
+    @OneToMany(mappedBy = "student_id") //registration
+    Set<Registration> registrations = new HashSet<>();
 
     public Student(String name, String email, String gituser, String memo) {
         this.name = name;
