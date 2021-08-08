@@ -18,8 +18,8 @@ public class StudentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "creates a movie")
-    @ApiResponse(responseCode = "201",description = "movie created")
+    @Operation(summary = "creates a student")
+    @ApiResponse(responseCode = "201",description = "student created")
     public StudentDTO createMovie(@Valid @RequestBody CreateStudentCommand command) {
         return studentService.createStudent(command);
     }
@@ -27,5 +27,10 @@ public class StudentController {
     @Operation(summary = "list of students")
     public List<StudentDTO> listStudents(@RequestParam Optional<String> search) {
         return studentService.listActors(search);
+    }
+    @PutMapping("/{id}")
+    @Operation(summary = "update student")
+    public StudentDTO updateMovie(@PathVariable("id") long id, @Valid @RequestBody CreateStudentCommand command){
+        return studentService.updateStudent(id,command);
     }
 }

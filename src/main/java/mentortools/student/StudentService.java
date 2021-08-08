@@ -3,6 +3,7 @@ package mentortools.student;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,5 +29,17 @@ public class StudentService {
                 command.getMemo());
         studentRepo.save(student);
         return modelMapper.map(student,StudentDTO.class);
+    }
+    @Transactional
+    public StudentDTO updateStudent(long id, CreateStudentCommand command) {
+        Student student = studentRepo.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        student.setName(command.getName());
+        student.setEmail(command.getEmail());
+        student.setGituser(command.getGituser());
+        student.setMemo(command.getMemo());
+        return modelMapper.map(student,StudentDTO.class);
+    }
+    public void deleteMovie(long id) {
+        studentRepo.deleteById(id);
     }
 }
